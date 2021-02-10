@@ -13,7 +13,7 @@ return volume;
 }
 void output(float v)
 {
-printf(" the volume of tromboliod is %f",v);
+printf(" The Volume Of Tromboliod is %f",v);
 }
 int main()
 {
