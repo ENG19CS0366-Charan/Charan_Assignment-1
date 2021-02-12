@@ -1,8 +1,7 @@
 #include<stdio.h>
 int main()
 {
- float h,b,d;
- float volume_of_tromboloid;
+ float h,b,d,volume_of_tromboloid;
  printf("Enter the value of h:");
  scanf("%f",&h);
  printf("Enter the value of b:");
