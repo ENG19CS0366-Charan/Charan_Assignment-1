@@ -5,18 +5,15 @@ float input()
  printf("Enter the number:- ");
  scanf("%f",&n);
 }
-
-float sum( float a, float b)
+float sum(float a,float b)
 {
  float sum;
  sum=a+b;
 }
-
-void  output( float n)
+void output(float n)
 {
  printf("sum is %f",n);
 }
- 
 int main()
 {
 float x,y,z;
