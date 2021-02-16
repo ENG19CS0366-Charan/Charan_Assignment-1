@@ -4,16 +4,14 @@ float input(char a)
 float n;
 printf("enter the values of %c:",a);
 scanf("%f",&n);
-return n;
 }
 float volume(float h,float d,float b)
 {
-float volume = (((h*d*b)+(d/b))/3);
-return volume;
+float volume=(((h*d*b)+(d/b))/3);
 }
 void output(float v)
 {
-printf(" The Volume Of Tromboliod is %f",v);
+printf("The Volume Of Tromboliod is %f",v);
 }
 int main()
 {
@@ -23,5 +21,4 @@ d=input(d);
 b=input(b);
 v=volume(h,d,b);
 output(v);
-return 0;
 }
