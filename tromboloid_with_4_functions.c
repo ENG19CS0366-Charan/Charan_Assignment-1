@@ -2,7 +2,7 @@
 float input(char a)
 {
 float n;
-printf("enter the values of %c:",a);
+printf("enter the values of tromboloid h,d,b:",);
 scanf("%f",&n);
 }
 float volume(float h,float d,float b)
