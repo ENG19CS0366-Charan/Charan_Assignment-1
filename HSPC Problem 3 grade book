@@ -1,0 +1,118 @@
+#include<stdio.h>
+struct student
+{
+    char name[100];
+    float average;
+    char grade;
+    int scores[100];
+};
+typedef struct student Student;
+
+struct gradebook
+{
+    char coursename[100];
+    int totalstudent;
+    int totalscores;
+    float weights[100];
+    float sumofweights;
+    Student data[100]
+};
+typedef struct gradebook Book;
+
+Student input_one_student(int totalscores)
+{
+    Student std;
+    printf("Enter the name of student:-");
+    scanf("%s",&std.name);
+    for(int i=0;i<totalscores;i++)
+    {
+        scanf("%d",&std.scores[i]);
+    }
+    return std;
+}
+
+Book input_n_student()
+{
+    Book  gd;
+    printf("Enter the name of the course:-");
+    scanf("%s",gd.coursename);
+    printf("Enter total no:of students:-");
+    scanf("%d",&gd.totalstudent);
+    printf("Enter total no:of scores:-");
+    scanf("%d",&gd.totalscores);
+    for(int i=0;i<gd.totalscores;i++)
+    {
+        scanf("%f",&gd.weights[i]);
+    }
+    gd.sumofweights=0;
+    for(int i=0;i<gd.totalscores;i++)
+    {
+        gd.sumofweights+=gd.weights[i];
+    }
+    for(int i=0;i<gd.totalstudent;i++)
+    {
+        gd.data[i]=input_one_student(gd.totalscores);
+    }
+    return gd;
+}
+
+Student compute_one_student(Student d,Book b)
+{
+    float s=0;
+    for(int i=0;i<b.totalscores;i++)
+    {
+        s+= (d.scores[i]*b.weights[i]);
+    }
+    d.average=s/b.sumofweights;
+    
+    if(d.average>=0 && d.average<60)
+    d.grade='F';
+    else if(d.average>=60 && d.average<70)
+    d.grade='D';
+    else if(d.average>=70 && d.average<80)
+    d.grade='C';
+    else if(d.average>=80 && d.average<90)
+    d.grade='B';
+    else if(d.average>=90 && d.average<100)
+    d.grade='A';
+    
+    return d;
+}
+
+Book compute_n_student(Book b)
+{
+    for(int i=0;i<b.totalstudent;i++)
+    {
+        b.data[i]=compute_one_student(b.data[i],b);
+    }
+    return b;
+}
+
+print_one_student(Student d)
+{
+    printf("%s\t%0.2f %c\n",d.name,d.average,d.grade);
+}
+
+void print_n_student(Book b)
+{
+    printf("%s\n",b.coursename);
+    for(int i=0;i<b.totalstudent;i++)
+    {
+        print_one_student(b.data[i]);
+    }
+}
+
+int main()
+{
+    int n;
+    printf("enter the total no:of grade book:- \n ");
+    scanf("%d",&n);
+    Book g[n];
+    for(int i=0;i<n;i++)
+    {
+        g[i]=input_n_student();
+        g[i]=compute_n_student(g[i]);
+        print_n_student(g[i]);
+    }
+    return 0;
+}
