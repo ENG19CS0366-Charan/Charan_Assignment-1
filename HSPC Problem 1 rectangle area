@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<math.h>
+
+struct rectangle
+{
+	float x;
+	float y;
+};
+typedef struct rectangle rectangle;
+
+struct s2
+{
+	rectangle cord[3];
+};
+typedef struct s2 vertex;
+
+struct s2 input()
+{
+	vertex r;
+	for(int i=0;i<3;i++)
+	{
+		scanf("%f %f",&r.cord[i].x,&r.cord[i].y);
+	}
+	return r;
+}
+
+float distance(rectangle a,rectangle b)
+{
+	float dist=0;
+	dist=sqrt(pow(a.x-b.x,2) + pow(a.y-b.y,2));
+	return dist;
+}
+
+float area(vertex r)
+{
+	float ab=distance(r.cord[0],r.cord[1]);
+	float bc=distance(r.cord[1],r.cord[2]);
+	float ca=distance(r.cord[2],r.cord[0]);
+	if(ab>=bc && ab>=ca)
+	return bc*ca;
+
+	if(bc>=ca && bc>=ab)
+	return ab*ca;
+
+	if(ca>=ab && ca>=bc)
+	return ab*bc;
+}
+
+void print(vertex r,float area)
+{
+	printf("area of rectangle with vertices : (%.1f,%.1f),(%.1f,%.1f),(%.1f,%.1f) is %.1f \n",r.cord[0].x,r.cord[0].y,r.cord[1].x,r.cord[1].y,r.cord[2].x,r.cord[2].y,area);
+}
+
+int main()
+{
+	int n;
+	scanf("%d",&n);
+	vertex r;
+    vertex a[n];
+    for(int i=0;i<n;i++)
+    {
+    a[i]=input();
+    }
+    float p;
+    for(int i=0;i<n;i++)
+    {
+    	p=area(a[i]);
+    	print(a[i],p);
+    }
+    return 0;
+}
